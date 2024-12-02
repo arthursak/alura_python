@@ -1,6 +1,8 @@
 import os
 
-restaurantes =  []
+restaurantes =  [{'nome':'Praça', 'categoria':'Japonesa', 'ativo':False},
+                {'nome':'Pizza', 'categoria':'Italiana', 'ativo':True},
+                {'nome':'Dogs', 'categoria':'Rua', 'ativo':False}]
 
 def nome_prog():
     os.system('cls')
@@ -14,8 +16,12 @@ def cadastro_rest():
     print('Cadastro de novos restaurantes\n')
 
     nome_rest = input('Digite o nome do restaurante que deseja adicionar: ')
-    restaurantes.append(nome_rest)
-    print(f'\nO restaurante {nome_rest} foi adicionado com sucesso!\n')
+    categ_rest = input(f'Digite a categoria do restaurante {nome_rest}: ')
+
+    dados_rest = {'nome':nome_rest,'categoria':categ_rest,'ativo':False}
+    restaurantes.append(dados_rest)
+
+    print(f'\n{dados_rest}\nO restaurante foi adicionado com sucesso!\n')
 
     input('Digite qualquer tecla para retornar ao menu principal')
     main()
@@ -25,7 +31,10 @@ def lista_rest():
     print(f'Restaurantes cadastrados: \n')
 
     for restaurante in restaurantes:
-        print(f'.{restaurante}')
+        nome_rest = restaurante['nome']
+        categ_rest = restaurante['categoria']
+        atv_rest = restaurante['ativo']
+        print(f'* {nome_rest} | {categ_rest} | {atv_rest}')
 
     input('Pressione qualquer tecla para continuar')
     main()
@@ -51,8 +60,6 @@ def opc():
 def finalizar_app():
     os.system('cls')
     print('Finalizando o app!\n')
-
-
 
 
 def main():
