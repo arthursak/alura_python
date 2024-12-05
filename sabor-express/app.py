@@ -33,10 +33,29 @@ def lista_rest():
     for restaurante in restaurantes:
         nome_rest = restaurante['nome']
         categ_rest = restaurante['categoria']
-        atv_rest = restaurante['ativo']
+        atv_rest = 'Ativado' if restaurante['ativo'] else 'Desativado'
         print(f'* {nome_rest} | {categ_rest} | {atv_rest}')
 
     input('Pressione qualquer tecla para continuar')
+    main()
+
+def alt_rest():
+    nome_rest = input('Digite o nome do restaurante que deseja alterar o estado: ')
+    rest_encontrado = False
+
+    for restaurante in restaurantes:
+        if nome_rest == restaurante['nome']:
+            rest_encontrado = True
+            restaurante['ativo'] = not restaurante['ativo']
+            mensagem = (f'O restaurante {nome_rest} foi ativado com sucesso!') if restaurante['ativo'] else f'O restaurante {nome_rest} foi desativado com sucesso!'
+
+            print(mensagem)
+            input('')
+
+        if not rest_encontrado:
+            print(f'O restaurante {nome_rest} não foi encontrado')
+
+
     main()
 
 def opc():
@@ -48,7 +67,7 @@ def opc():
         case '2':
             lista_rest()
         case '3':
-            print('Ativar restaurante')
+            alt_rest()
         case '4':
             finalizar_app()
         case _:
